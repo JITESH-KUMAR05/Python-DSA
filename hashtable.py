@@ -8,16 +8,25 @@ class HashTable:
         for char in key:
             h += ord(char)
         return h % self.max
-    def add(self,key,val):
+    def __setitem__(self, key, val):
         h = self.get_hash(key)
         self.arr[h] = val
         return 0
-    def get(self,key):
+    def __getitem__(self, key):
         return self.arr[self.get_hash(key)]
+    def __delitem__(self, key):
+        self.arr[self.get_hash(key)] = None
 
 # print(get_hash('march 6'))
 ht = HashTable()
 # print(ht.get_hash('march 6'))
-print((ht.add('march 6',130)))
+# print((ht.add('march 6',130)))
 # print(ht.arr)
-print(ht.get('march 6'))
+# print(ht.get('march 6'))
+# name changed for the functiona from add to setitem and get to getitem
+ht['march 6'] = 130
+ht['march 8'] = 30
+print(ht['march 6'])
+print(ht.arr)
+del ht['march 6']
+print(ht.arr)
